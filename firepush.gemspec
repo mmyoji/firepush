@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["mmyoji@gmail.com"]
 
   spec.summary       = %q{Firebase Cloud Messaging Client library.}
-  spec.description   = %q{Firebase Cloud Messaging Client library.}
+  spec.description   = %q{Firebase Cloud Messaging Client library which uses HTTP v1 API.}
   spec.homepage      = "https://github.com/mmyoji/firepush"
   spec.license       = "MIT"
 
