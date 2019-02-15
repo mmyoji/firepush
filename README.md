@@ -1,6 +1,6 @@
 # Firepush
 
-WIP: Firepush is [Firebase Cloud Messaging] client library.
+WIP: Firepush is [Firebase Cloud Messaging](https://firebase.google.com/docs/cloud-messaging/) client library.
 
 ## Installation
 
