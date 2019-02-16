@@ -9,14 +9,14 @@ Firepush is [Firebase Cloud Messaging](https://firebase.google.com/docs/cloud-me
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'firepush', git: "git://github.com/mmyoji/firepush.git"
+gem 'firepush'
 ```
 
 And then execute:
 
     $ bundle install
 
-Or install it yourself as: (This doesn't work now)
+Or install it yourself as:
 
     $ gem install firepush
 
