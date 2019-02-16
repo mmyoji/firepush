@@ -11,3 +11,5 @@ rvm:
 before_install: gem install bundler -v 1.17.2
 matrix:
   allow_failures: ruby-head
+notifications:
+  email: false
