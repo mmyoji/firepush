@@ -1,6 +1,6 @@
 # Firepush
 
-WIP: Firepush is [Firebase Cloud Messaging](https://firebase.google.com/docs/cloud-messaging/) client library using [HTTP v1 API](https://firebase.google.com/docs/cloud-messaging/migrate-v1).
+Firepush is [Firebase Cloud Messaging](https://firebase.google.com/docs/cloud-messaging/) client library using [HTTP v1 API](https://firebase.google.com/docs/cloud-messaging/migrate-v1).
 
 ## Installation
 
@@ -12,7 +12,7 @@ gem 'firepush'
 
 And then execute:
 
-    $ bundle
+    $ bundle install
 
 Or install it yourself as:
 
@@ -20,7 +20,38 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+You can see the following link to understand the FCM messages.
+
+[About FCM messages | Firebase](https://firebase.google.com/docs/cloud-messaging/concept-options?hl=en)
+
+```rb
+require "firepush"
+
+client = Firepush::Client.new(
+  access_token: "<your Firebase Project Access Token>",
+  project_id:   "<your Firebase project ID>",
+)
+
+# 1. Notification message to a single device
+
+client.push(
+  notification: {
+    title: "Some title is required",
+    body: "Some body is required",
+  },
+  token: "<Android Registration ID>",
+)
+
+# 2. Data message to a topic
+
+client.push(
+  data: {
+    key: "some String value is required",
+    key2: "you can set multiple key-value in this section",
+  },
+  topic: "news",
+)
+```
 
 ## Development
 
