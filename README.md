@@ -1,5 +1,7 @@
 # Firepush
 
+[![Build Status](https://travis-ci.org/mmyoji/firepush.svg?branch=master)](https://travis-ci.org/mmyoji/firepush)
+
 Firepush is [Firebase Cloud Messaging](https://firebase.google.com/docs/cloud-messaging/) client library using [HTTP v1 API](https://firebase.google.com/docs/cloud-messaging/migrate-v1).
 
 ## Installation
