@@ -31,7 +31,7 @@ module Firepush
     # @param message [Hash] optional
     #
     # TODO: Return useful response
-    # @return [Http::Response]
+    # @return [Net::HTTPResponse]
     #
     # @raise [Firepush::Client::InvalidAttributes]
     def push(message = nil)
