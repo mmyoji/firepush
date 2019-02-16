@@ -35,24 +35,32 @@ client = Firepush::Client.new(
 )
 
 # 1. Notification message to a single device
-
 client.push(
   notification: {
-    title: "Some title is required",
-    body: "Some body is required",
+    title: "Hello",
+    body:  "from firepush!",
   },
-  token: "<Android Registration ID>",
+  token: "<client token>",
 )
 
 # 2. Data message to a topic
-
 client.push(
   data: {
-    key: "some String value is required",
-    key2: "you can set multiple key-value in this section",
+    key:  "foo",
+    key2: "bar",
   },
   topic: "news",
 )
+
+# or you can set message beforehand.
+client.message = {
+  notification: {
+    title: "hey"
+    body:  "siri",
+  },
+  topic: "apple",
+}
+client.push
 ```
 
 ## Development
