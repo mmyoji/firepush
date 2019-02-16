@@ -39,7 +39,7 @@ module Firepush
 
       raise InvalidAttributes unless valid?
 
-      http.post(path, message.to_json, headers)
+      http.post(path, self.message.to_json, headers)
     end
 
     # @return [Boolean]
@@ -73,7 +73,7 @@ module Firepush
     # @private
     # @return [String]
     def path
-      "/#{project_id}/messages:send"
+      "#{BASE_PATH}/#{project_id}/messages:send"
     end
 
     # @private
