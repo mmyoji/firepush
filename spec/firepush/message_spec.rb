@@ -18,8 +18,9 @@ RSpec.describe Firepush::Message do
       it "sets attributes" do
         expect(message.recipient.key).to eq :topic
         expect(message.recipient.value).to eq "news"
-        expect(message.message_type.key).to eq :notification
-        expect(message.message_type.value).to eq(title: "Hello", body: "world")
+        expect(message.message_types.types.count).to eq 1
+        expect(message.message_types.types[0].key).to eq :notification
+        expect(message.message_types.types[0].value).to eq(title: "Hello", body: "world")
         expect(message.extra).to eq({})
       end
     end

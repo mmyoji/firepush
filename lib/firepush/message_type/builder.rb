@@ -2,6 +2,9 @@
 
 module Firepush
   module MessageType
+    # TODO: support :android, :webpush and :apns
+    TYPES = %i(notification data)
+
     class Builder
       # @param  args [Hash]
       # @option args [Hash] :notification
@@ -14,8 +17,6 @@ module Firepush
       # @see .build
       def initialize(args)
         @_args = args
-
-        check_args!
       end
       private_class_method :new
 
@@ -32,18 +33,6 @@ module Firepush
       private
 
       attr_reader :_args
-
-      # @private
-      # @raise [ArgumentError]
-      def check_args!
-        if notification? && data?
-          raise ::ArgumentError.new("Cannot set both :notification and :data")
-        end
-
-        if !notification? && !data?
-          raise ::ArgumentError.new("Must set either :notification or :data")
-        end
-      end
 
       # @private
       # @return [Boolean]
