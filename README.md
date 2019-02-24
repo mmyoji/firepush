@@ -52,6 +52,19 @@ client.push(
   topic: "news",
 )
 
+# 3. You can set both Notification/Data message types
+client.push(
+  notification: {
+    title: "Hello",
+    body:  "from firepush!",
+  },
+  data: {
+    key:  "foo",
+    key2: "bar",
+  },
+  topic: "news",
+)
+
 # or you can set message beforehand.
 client.message = {
   notification: {
