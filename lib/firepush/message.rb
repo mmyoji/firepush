@@ -4,14 +4,14 @@ require "json"
 
 module Firepush
   class Message
-    attr_reader :recipient    # @return [Firepush::Recipient::Base]
-    attr_reader :message_type # @return [Firepush::MessageType::Base]
+    attr_reader :recipient     # @return [Firepush::Recipient::Base]
+    attr_reader :message_types # @return [Firepush::MessageTypes]
 
     # TODO: handle extra data in better way.
     attr_reader :extra # @return [Hash]
 
     # @param  msg [Hash]
-    # @see lib/firepush/{message_type,recipient}/*.rb
+    # @see lib/firepush/{recipient/*,message_types}.rb
     # @raise [ArgumentError]
     def initialize(msg)
       msg = msg.dup
@@ -23,9 +23,10 @@ module Firepush
       @recipient = Recipient::Builder.build(args)
 
       args.clear
-      args[:notification] = msg.delete(:notification) if msg.key?(:notification)
-      args[:data] = msg.delete(:data) if msg.key?(:data)
-      @message_type = MessageType::Builder.build(args)
+      MessageType::TYPES.each do |type|
+        args[type] = msg.delete(type) if msg.key?(type)
+      end
+      @message_types = MessageTypes.new(args)
 
       @extra = msg
     end
@@ -37,7 +38,7 @@ module Firepush
 
     # @return [Boolean]
     def valid?
-      recipient.valid? && message_type.valid?
+      recipient.valid? && message_types.valid?
     end
 
     private
@@ -45,10 +46,9 @@ module Firepush
     # @private
     # @return [Hash]
     def message
-      {
-        recipient.key    => recipient.value,
-        message_type.key => message_type.value,
-      }.merge(extra)
+      message_types.message.merge({
+        recipient.key => recipient.value
+      }.merge(extra))
     end
   end
 end

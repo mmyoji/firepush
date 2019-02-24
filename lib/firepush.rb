@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 module Firepush
-  autoload :Client,  "firepush/client"
-  autoload :Message, "firepush/message"
+  autoload :Client,       "firepush/client"
+  autoload :Message,      "firepush/message"
+  autoload :MessageTypes, "firepush/message_types"
 
   module MessageType
     autoload :Base,         "firepush/message_type/base"
