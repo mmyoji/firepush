@@ -2,10 +2,13 @@
 
 module Firepush
   module Recipient
+    TYPES = %i(topic token condition)
+
     class Builder
       # @param  args [Hash]
       # @option args [Hash] :topic
       # @option args [Hash] :token
+      # @option args [Hash] :condition
       def self.build(args)
         new(args).build
       end
@@ -26,6 +29,8 @@ module Firepush
           Topic.new(_args.fetch(:topic))
         when token?
           Token.new(_args.fetch(:token))
+        when condition?
+          Condition.new(_args.fetch(:condition))
         end
       end
 
@@ -36,13 +41,19 @@ module Firepush
       # @private
       # @raise [ArgumentError]
       def check_args!
-        if topic? && token?
-          raise ::ArgumentError.new("Cannot set both :topic and :token")
+        count = TYPES.reduce(0) do |sum, type|
+          sum += 1 if _args.key?(type)
+          sum
         end
+        return if count == 1
 
-        if !topic? && !token?
-          raise ::ArgumentError.new("Must set either :topic or :token")
-        end
+        raise ::ArgumentError.new("Have to set one of :topic, :token, or :condition")
+      end
+
+      # @private
+      # @return [Boolean]
+      def condition?
+        _args.key?(:condition)
       end
 
       # @private

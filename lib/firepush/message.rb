@@ -17,8 +17,9 @@ module Firepush
       msg = msg.dup
 
       args = {}
-      args[:topic] = msg.delete(:topic) if msg.key?(:topic)
-      args[:token] = msg.delete(:token) if msg.key?(:token)
+      Recipient::TYPES.each do |type|
+        args[type] = msg.delete(type) if msg.key?(type)
+      end
       @recipient = Recipient::Builder.build(args)
 
       args.clear

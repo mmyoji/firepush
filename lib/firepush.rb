@@ -12,10 +12,11 @@ module Firepush
   end
 
   module Recipient
-    autoload :Base,    "firepush/recipient/base"
-    autoload :Builder, "firepush/recipient/builder"
-    autoload :Token,   "firepush/recipient/token"
-    autoload :Topic,   "firepush/recipient/topic"
+    autoload :Base,      "firepush/recipient/base"
+    autoload :Builder,   "firepush/recipient/builder"
+    autoload :Condition, "firepush/recipient/condition"
+    autoload :Token,     "firepush/recipient/token"
+    autoload :Topic,     "firepush/recipient/topic"
   end
 
   autoload :HelperMethods, "firepush/helper_methods"
