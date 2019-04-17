@@ -32,7 +32,7 @@ module Firepush
     end
 
     # @return [String]
-    def to_json
+    def to_json(_opts = {})
       ::JSON.generate(message: message)
     end
 
